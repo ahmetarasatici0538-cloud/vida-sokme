@@ -13,7 +13,7 @@ window.VIDA_CONFIG = {
     ca-pub-1234567890123456
   */
   adsenseClient:
-    "ca-pub-XXXXXXXXXXXXXXXX",
+    "ca-pub-3434186163148106",
 
   /*
     AdSense reklam birimi numaraları.
