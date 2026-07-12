@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  />
+
+  <meta name="theme-color" content="#6f4328" />
+
+  <meta
+    name="description"
+    content="Vida Rotası: renkleri eşleştir, vidaları doğru sırayla sök ve parçaları serbest bırak."
+  />
+
+  <title>Vida Rotası</title>
+
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div class="app" id="app">
+
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">AHŞAP BULMACA</p>
+        <h1>Vida Rotası</h1>
+      </div>
+
+      <button
+        class="premium-button"
+        id="premiumButton"
+        type="button"
+        aria-label="Reklamları kaldır"
+      >
+        <span>◆</span>
+        Reklamları kaldır
+        <strong>10 TL</strong>
+      </button>
+    </header>
+
+    <aside
+      class="ad-wrap ad-top"
+      data-ad-container
+      aria-label="Reklam alanı"
+    >
+      <span class="ad-label">REKLAM</span>
+
+      <div class="ad-placeholder">
+        AdSense üst reklam alanı
+      </div>
+
+      <ins
+        class="adsbygoogle"
+        style="display:block"
+        data-ad-client=""
+        data-ad-slot=""
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+      ></ins>
+    </aside>
+
+    <main class="game-card">
+
+      <section class="hud" aria-label="Oyun bilgileri">
+
+        <div class="hud-item">
+          <span>BÖLÜM</span>
+          <strong id="levelLabel">1</strong>
+        </div>
+
+        <div class="hud-center">
+          <span>VİDA YUVALARI</span>
+
+          <div
+            class="slots"
+            id="slots"
+            aria-label="Toplanan vidalar"
+          ></div>
+        </div>
+
+        <div class="hud-item hud-right">
+          <span>İPUCU</span>
+          <strong id="hintCount">3</strong>
+        </div>
+
+      </section>
+
+      <section class="canvas-shell">
+
+        <canvas
+          id="gameCanvas"
+          width="900"
+          height="1080"
+          aria-label="Vida Rotası oyun alanı"
+        ></canvas>
+
+        <div
+          class="toast"
+          id="toast"
+          role="status"
+          aria-live="polite"
+        ></div>
+
+      </section>
+
+      <section class="controls" aria-label="Oyun kontrolleri">
+
+        <button
+          class="control-button"
+          id="restartButton"
+          type="button"
+        >
+          <span aria-hidden="true">↻</span>
+          Yeniden başlat
+        </button>
+
+        <button
+          class="control-button primary"
+          id="hintButton"
+          type="button"
+        >
+          <span aria-hidden="true">✦</span>
+          İpucu kullan
+        </button>
+
+        <button
+          class="control-button"
+          id="helpButton"
+          type="button"
+        >
+          <span aria-hidden="true">?</span>
+          Nasıl oynanır
+        </button>
+
+      </section>
+
+    </main>
+
+    <aside
+      class="ad-wrap ad-bottom"
+      data-ad-container
+      aria-label="Reklam alanı"
+    >
+      <span class="ad-label">REKLAM</span>
+
+      <div class="ad-placeholder">
+        AdSense alt reklam alanı
+      </div>
+
+      <ins
+        class="adsbygoogle"
+        style="display:block"
+        data-ad-client=""
+        data-ad-slot=""
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+      ></ins>
+    </aside>
+
+    <footer>
+      <span>
+        ©️ <span id="year"></span> Vida Rotası
+      </span>
+
+      <a href="privacy.html">Gizlilik</a>
+    </footer>
+
+  </div>
+
+  <dialog class="modal" id="resultModal">
+
+    <div class="modal-icon" id="resultIcon">★</div>
+
+    <h2 id="resultTitle">
+      Bölüm tamamlandı
+    </h2>
+
+    <p id="resultText">
+      Bütün parçaları serbest bıraktın.
+    </p>
+
+    <div
+      class="stars"
+      id="resultStars"
+      aria-label="Bölüm yıldızları"
+    >
+      ★★★
+    </div>
+
+    <div class="modal-actions">
+
+      <button
+        class="modal-secondary"
+        id="resultRestart"
+        type="button"
+      >
+        Tekrar oyna
+      </button>
+
+      <button
+        class="modal-primary"
+        id="nextLevelButton"
+        type="button"
+      >
+        Sonraki bölüm
+      </button>
+
+    </div>
+
+  </dialog>
+
+  <dialog class="modal" id="helpModal">
+
+    <div class="modal-icon">?</div>
+
+    <h2>Nasıl oynanır?</h2>
+
+    <ol class="help-list">
+      <li>Üstünde başka parça olmayan bir vidaya dokun.</li>
+      <li>Vidalar yukarıdaki yedi yuvaya gider.</li>
+      <li>Aynı renkten üç vida birikince yuvalardan silinir.</li>
+      <li>Yedi yuva tamamen dolarsa bölümü kaybedersin.</li>
+      <li>Tüm vidaları söküp parçaları düşürürsen kazanırsın.</li>
+    </ol>
+
+    <button
+      class="modal-primary wide"
+      data-close-dialog="helpModal"
+      type="button"
+    >
+      Anladım
+    </button>
+
+  </dialog>
+
+  <dialog class="modal" id="premiumModal">
+
+    <div class="modal-icon">◆</div>
+
+    <h2>Reklamları kaldır</h2>
+
+    <p>
+      Tek seferlik <strong>10 TL</strong> ödeme ile
+      bu cihazda reklam alanlarını kapat.
+    </p>
+
+    <p class="small-note" id="premiumNote">
+      Gerçek ödeme bağlantısı henüz ayarlanmamış.
+    </p>
+
+    <div class="modal-actions stacked">
+
+      <button
+        class="modal-primary"
+        id="startPurchaseButton"
+        type="button"
+      >
+        10 TL ile satın al
+      </button>
+
+      <button
+        class="modal-secondary"
+        id="demoPremiumButton"
+        type="button"
+      >
+        Sadece test için etkinleştir
+      </button>
+
+      <button
+        class="text-button"
+        data-close-dialog="premiumModal"
+        type="button"
+      >
+        Vazgeç
+      </button>
+
+    </div>
+
+  </dialog>
+
+  <script src="config.js"></script>
+  <script src="ads.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>
