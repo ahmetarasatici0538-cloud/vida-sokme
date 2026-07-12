@@ -47,5 +47,5 @@ window.VIDA_CONFIG = {
 
     Siteyi yayınlamadan önce false yap.
   */
-  allowDemoPremium: true
+  allowDemoPremium: false
 };
