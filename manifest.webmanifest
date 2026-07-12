@@ -1,0 +1,17 @@
+{
+  "name": "Vida Rotası",
+  "short_name": "Vida Rotası",
+  "description": "Renkli vidaları doğru sırayla sök ve parçaları serbest bırak.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#ead7c0",
+  "theme_color": "#6f4328",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
